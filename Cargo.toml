@@ -1,0 +1,19 @@
+[package]
+name = "filtr_logow"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+eframe = "0.29"
+rfd = "0.15"
+image = { version = "0.25", features = ["ico"] }
+
+[build-dependencies]
+winres = "0.1"
+
+[profile.release]
+opt-level = "z"        # Optymalizacja pod kątem najmniejszego rozmiaru pliku (zamiast szybkości)
+lto = true             # Link-Time Optimization (optymalizacja całego programu i bibliotek)
+codegen-units = 1      # Dokładniejsza optymalizacja kodu przez kompilator
+strip = true           # Całkowite usunięcie metadanych i symboli debugowania
+panic = "abort"        # Wyłączenie obsługi awarii stosu (odchudza binarkę)
